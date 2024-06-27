@@ -1,0 +1,4 @@
+.MODEL SMALL
+
+.STACK 64
+

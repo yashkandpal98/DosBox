@@ -1,0 +1,39 @@
+TITLE STRCPY
+
+.MODEL SMALL
+
+.STACK 64
+
+.DATA
+        ONE DB 'HELLO', '$'
+        TWO DB 5 DUP(' ')
+                  
+.CODE
+MAIN PROC FAR
+        MOV AX, @DATA
+        MOV DS, AX
+
+        LEA SI, ONE
+        LEA DI, TWO
+	MOV CX, 5
+
+   XYZ: MOV AL, [SI]
+	MOV [DI], AL
+	INC SI
+	INC DI
+	LOOP XYZ
+
+	LEA SI, TWO
+	MOV AH, 02H
+	MOV CX, 5
+
+   XXX: LODSB
+	MOV DL, AL
+	INT 21H
+	LOOP XXX
+
+	MOV AX, 4C00H
+        INT 21H
+
+MAIN ENDP
+END MAIN
